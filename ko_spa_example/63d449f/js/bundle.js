@@ -3655,8 +3655,8 @@
 	  }
 
 	  function buildAlphanumericSort() {
-	    var order = 'AAAAA?BC??CD?DEEE?EE?FG?H?III?IIJKL?MN??NOOOOPQR?S???T?UUU?UUVWXYYZ???TA?OOAAO';
-	    var equiv = 'AAAAAA,CC,EEEEE,III?II,OOOOOO,Ss,UUUUU';
+	    var order = 'AÁÀÂÃĄBCĆČÇDĎÐEÉÈĚÊËĘFGĞHıIÍÌİÎÏJKLŁMNŃŇÑOÓÒÔPQRŘSŚŠŞTŤUÚÙŮÛÜVWXYÝZŹŻŽÞÆŒØÕÅÄÖ';
+	    var equiv = 'AÁÀÂÃÄ,CÇ,EÉÈÊË,IÍÌİÎÏ,OÓÒÔÕÖ,Sß,UÚÙÛÜ';
 	    array[AlphanumericSortOrder] = order.split('').map(function(str) {
 	      return str + str.toLowerCase();
 	    }).join('');
@@ -10052,11 +10052,11 @@
 	   *
 	   * @example
 	   *
-	   *   '?????'.hasArabic()          -> true
+	   *   'أتكلم'.hasArabic()          -> true
 	   *   'визит'.hasCyrillic()        -> true
-	   *   '? ?????!'.hasHangul() -> true
+	   *   '잘 먹겠습니다!'.hasHangul() -> true
 	   *   'ミックスです'.hasKatakana() -> true
-	   *   "l'annee".hasLatin()         -> true
+	   *   "l'année".hasLatin()         -> true
 	   *
 	   ***
 	   * @method is[Script]()
@@ -10080,11 +10080,11 @@
 	   *
 	   * @example
 	   *
-	   *   '?????'.isArabic()          -> true
+	   *   'أتكلم'.isArabic()          -> true
 	   *   'визит'.isCyrillic()        -> true
-	   *   '? ?????!'.isHangul() -> true
+	   *   '잘 먹겠습니다!'.isHangul() -> true
 	   *   'ミックスです'.isKatakana() -> false
-	   *   "l'annee".isLatin()         -> true
+	   *   "l'année".isLatin()         -> true
 	   *
 	   ***/
 	  var unicodeScripts = [
@@ -10130,7 +10130,7 @@
 	  var WidthConversionTable;
 	  var allHankaku   = /[\u0020-\u00A5]|[\uFF61-\uFF9F][ﾞﾟ]?/g;
 	  var allZenkaku   = /[\u3000-\u301C]|[\u301A-\u30FC]|[\uFF01-\uFF60]|[\uFFE0-\uFFE6]/g;
-	  var hankakuPunctuation  = '｡､｢｣\￠￡';
+	  var hankakuPunctuation  = '｡､｢｣¥¢£';
 	  var zenkakuPunctuation  = '。、「」￥￠￡';
 	  var voicedKatakana      = /[カキクケコサシスセソタチツテトハヒフヘホ]/;
 	  var semiVoicedKatakana  = /[ハヒフヘホヲ]/;
@@ -10178,7 +10178,7 @@
 	      setWidthConversion('p', hankakuPunctuation.charAt(i), c);
 	    });
 	    setWidthConversion('k', 'ｳﾞ', 'ヴ');
-	    setWidthConversion('k', 'ｦﾞ', '?');
+	    setWidthConversion('k', 'ｦﾞ', 'ヺ');
 	    setWidthConversion('s', ' ', '　');
 	  }
 
@@ -10319,8 +10319,8 @@
 	Date.addLocale('da', {
 	  'plural': true,
 	  'months': 'januar,februar,marts,april,maj,juni,juli,august,september,oktober,november,december',
-	  'weekdays': 'sondag|sondag,mandag,tirsdag,onsdag,torsdag,fredag,lordag|lordag',
-	  'units': 'millisekund:|er,sekund:|er,minut:|ter,tim:e|er,dag:|e,ug:e|er|en,maned:|er|en+maaned:|er|en,ar:||et+aar:||et',
+	  'weekdays': 'søndag|sondag,mandag,tirsdag,onsdag,torsdag,fredag,lørdag|lordag',
+	  'units': 'millisekund:|er,sekund:|er,minut:|ter,tim:e|er,dag:|e,ug:e|er|en,måned:|er|en+maaned:|er|en,år:||et+aar:||et',
 	  'numbers': 'en|et,to,tre,fire,fem,seks,syv,otte,ni,ti',
 	  'tokens': 'den,for',
 	  'articles': 'den',
@@ -10332,8 +10332,8 @@
 	  'duration': '{num} {unit}',
 	  'ampm': 'am,pm',
 	  'modifiers': [
-	    { 'name': 'day', 'src': 'forgars|i forgars|forgaars|i forgaars', 'value': -2 },
-	    { 'name': 'day', 'src': 'i gar|igar|i gaar|igaar', 'value': -1 },
+	    { 'name': 'day', 'src': 'forgårs|i forgårs|forgaars|i forgaars', 'value': -2 },
+	    { 'name': 'day', 'src': 'i går|igår|i gaar|igaar', 'value': -1 },
 	    { 'name': 'day', 'src': 'i dag|idag', 'value': 0 },
 	    { 'name': 'day', 'src': 'i morgen|imorgen', 'value': 1 },
 	    { 'name': 'day', 'src': 'over morgon|overmorgen|i over morgen|i overmorgen|iovermorgen', 'value': 2 },
@@ -10341,7 +10341,7 @@
 	    { 'name': 'sign', 'src': 'om', 'value':  1 },
 	    { 'name': 'shift', 'src': 'i sidste|sidste', 'value': -1 },
 	    { 'name': 'shift', 'src': 'denne', 'value': 0 },
-	    { 'name': 'shift', 'src': 'naste|naeste', 'value': 1 }
+	    { 'name': 'shift', 'src': 'næste|naeste', 'value': 1 }
 	  ],
 	  'dateParse': [
 	    '{num} {unit} {sign}',
@@ -10401,7 +10401,7 @@
 	Date.addLocale('de', {
 	  'plural': true,
 	   'capitalizeUnit': true,
-	  'months': 'Januar,Februar,Marz|Marz,April,Mai,Juni,Juli,August,September,Oktober,November,Dezember',
+	  'months': 'Januar,Februar,März|Marz,April,Mai,Juni,Juli,August,September,Oktober,November,Dezember',
 	  'weekdays': 'Sonntag,Montag,Dienstag,Mittwoch,Donnerstag,Freitag,Samstag',
 	  'units': 'Millisekunde:|n,Sekunde:|n,Minute:|n,Stunde:|n,Tag:|en,Woche:|n,Monat:|en,Jahr:|en',
 	  'numbers': 'ein:|e|er|en|em,zwei,drei,vier,fuenf,sechs,sieben,acht,neun,zehn',
@@ -10419,11 +10419,11 @@
 	    { 'name': 'day', 'src': 'gestern', 'value': -1 },
 	    { 'name': 'day', 'src': 'heute', 'value': 0 },
 	    { 'name': 'day', 'src': 'morgen', 'value': 1 },
-	    { 'name': 'day', 'src': 'ubermorgen|ubermorgen|uebermorgen', 'value': 2 },
+	    { 'name': 'day', 'src': 'übermorgen|ubermorgen|uebermorgen', 'value': 2 },
 	    { 'name': 'sign', 'src': 'vor:|her', 'value': -1 },
 	    { 'name': 'sign', 'src': 'in', 'value': 1 },
 	    { 'name': 'shift', 'src': 'letzte:|r|n|s', 'value': -1 },
-	    { 'name': 'shift', 'src': 'nachste:|r|n|s+nachste:|r|n|s+naechste:|r|n|s+kommende:n|r', 'value': 1 }
+	    { 'name': 'shift', 'src': 'nächste:|r|n|s+nachste:|r|n|s+naechste:|r|n|s+kommende:n|r', 'value': 1 }
 	  ],
 	  'dateParse': [
 	    '{sign} {num} {unit}',
@@ -10481,8 +10481,8 @@
 	Date.addLocale('es', {
 	  'plural': true,
 	  'months': 'enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre',
-	  'weekdays': 'domingo,lunes,martes,miercoles|miercoles,jueves,viernes,sabado|sabado',
-	  'units': 'milisegundo:|s,segundo:|s,minuto:|s,hora:|s,dia|dias|dia|dias,semana:|s,mes:|es,ano|anos|ano|anos',
+	  'weekdays': 'domingo,lunes,martes,miércoles|miercoles,jueves,viernes,sábado|sabado',
+	  'units': 'milisegundo:|s,segundo:|s,minuto:|s,hora:|s,día|días|dia|dias,semana:|s,mes:|es,año|años|ano|anos',
 	  'numbers': 'uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve,diez',
 	  'tokens': 'el,la,de',
 	  'short':'{d} {month} {yyyy}',
@@ -10497,11 +10497,11 @@
 	    { 'name': 'day', 'src': 'anteayer', 'value': -2 },
 	    { 'name': 'day', 'src': 'ayer', 'value': -1 },
 	    { 'name': 'day', 'src': 'hoy', 'value': 0 },
-	    { 'name': 'day', 'src': 'manana|manana', 'value': 1 },
+	    { 'name': 'day', 'src': 'mañana|manana', 'value': 1 },
 	    { 'name': 'sign', 'src': 'hace', 'value': -1 },
 	    { 'name': 'sign', 'src': 'dentro de', 'value': 1 },
 	    { 'name': 'shift', 'src': 'pasad:o|a', 'value': -1 },
-	    { 'name': 'shift', 'src': 'proximo|proxima|proximo|proxima', 'value': 1 }
+	    { 'name': 'shift', 'src': 'próximo|próxima|proximo|proxima', 'value': 1 }
 	  ],
 	  'dateParse': [
 	    '{sign} {num} {unit}',
@@ -10519,10 +10519,10 @@
 	    'plural':     true,
 	    'timeMarker': 'kello',
 	    'ampm':       ',',
-	    'months':     'tammikuu,helmikuu,maaliskuu,huhtikuu,toukokuu,kesakuu,heinakuu,elokuu,syyskuu,lokakuu,marraskuu,joulukuu',
+	    'months':     'tammikuu,helmikuu,maaliskuu,huhtikuu,toukokuu,kesäkuu,heinäkuu,elokuu,syyskuu,lokakuu,marraskuu,joulukuu',
 	    'weekdays':   'sunnuntai,maanantai,tiistai,keskiviikko,torstai,perjantai,lauantai',
-	    'units':      'millisekun:ti|tia|teja|tina|nin,sekun:ti|tia|teja|tina|nin,minuut:ti|tia|teja|tina|in,tun:ti|tia|teja|tina|nin,paiv:a|aa|ia|ana|an,viik:ko|koa|koja|on|kona,kuukau:si|sia|tta|den|tena,vuo:si|sia|tta|den|tena',
-	    'numbers':    'yksi|ensimmainen,kaksi|toinen,kolm:e|as,nelja:s,vii:si|des,kuu:si|des,seitsema:n|s,kahdeksa:n|s,yhdeksa:n|s,kymmene:n|s',
+	    'units':      'millisekun:ti|tia|teja|tina|nin,sekun:ti|tia|teja|tina|nin,minuut:ti|tia|teja|tina|in,tun:ti|tia|teja|tina|nin,päiv:ä|ää|iä|änä|än,viik:ko|koa|koja|on|kona,kuukau:si|sia|tta|den|tena,vuo:si|sia|tta|den|tena',
+	    'numbers':    'yksi|ensimmäinen,kaksi|toinen,kolm:e|as,neljä:s,vii:si|des,kuu:si|des,seitsemä:n|s,kahdeksa:n|s,yhdeksä:n|s,kymmene:n|s',
 	    'articles':   '',
 	    'optionals':  '',
 	    'short':      '{d}. {month}ta {yyyy}',
@@ -10536,22 +10536,22 @@
 	      switch(format) {
 	        case 'duration':  return numberWithUnit(0);
 	        case 'past':      return numberWithUnit(num > 1 ? 1 : 0) + ' sitten';
-	        case 'future':    return numberWithUnit(4) + ' paasta';
+	        case 'future':    return numberWithUnit(4) + ' päästä';
 	      }
 	    },
 	    'modifiers': [
-	        { 'name': 'day',   'src': 'toissa paivana|toissa paivaista', 'value': -2 },
-	        { 'name': 'day',   'src': 'eilen|eilista', 'value': -1 },
-	        { 'name': 'day',   'src': 'tanaan', 'value': 0 },
+	        { 'name': 'day',   'src': 'toissa päivänä|toissa päiväistä', 'value': -2 },
+	        { 'name': 'day',   'src': 'eilen|eilistä', 'value': -1 },
+	        { 'name': 'day',   'src': 'tänään', 'value': 0 },
 	        { 'name': 'day',   'src': 'huomenna|huomista', 'value': 1 },
 	        { 'name': 'day',   'src': 'ylihuomenna|ylihuomista', 'value': 2 },
 	        { 'name': 'sign',  'src': 'sitten|aiemmin', 'value': -1 },
-	        { 'name': 'sign',  'src': 'paasta|kuluttua|myohemmin', 'value': 1 },
-	        { 'name': 'edge',  'src': 'viimeinen|viimeisena', 'value': -2 },
+	        { 'name': 'sign',  'src': 'päästä|kuluttua|myöhemmin', 'value': 1 },
+	        { 'name': 'edge',  'src': 'viimeinen|viimeisenä', 'value': -2 },
 	        { 'name': 'edge',  'src': 'lopussa', 'value': -1 },
-	        { 'name': 'edge',  'src': 'ensimmainen|ensimmaisena', 'value': 1 },
-	        { 'name': 'shift', 'src': 'edellinen|edellisena|edeltava|edeltavana|viime|toissa', 'value': -1 },
-	        { 'name': 'shift', 'src': 'tana|taman', 'value': 0 },
+	        { 'name': 'edge',  'src': 'ensimmäinen|ensimmäisenä', 'value': 1 },
+	        { 'name': 'shift', 'src': 'edellinen|edellisenä|edeltävä|edeltävänä|viime|toissa', 'value': -1 },
+	        { 'name': 'shift', 'src': 'tänä|tämän', 'value': 0 },
 	        { 'name': 'shift', 'src': 'seuraava|seuraavana|tuleva|tulevana|ensi', 'value': 1 }
 	    ],
 	    'dateParse': [
@@ -10616,9 +10616,9 @@
 
 	Date.addLocale('fr', {
 	  'plural': true,
-	  'months': 'janvier,fevrier|fevrier,mars,avril,mai,juin,juillet,aout,septembre,octobre,novembre,decembre|decembre',
+	  'months': 'janvier,février|fevrier,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre|decembre',
 	  'weekdays': 'dimanche,lundi,mardi,mercredi,jeudi,vendredi,samedi',
-	  'units': 'milliseconde:|s,seconde:|s,minute:|s,heure:|s,jour:|s,semaine:|s,mois,an:|s|nee|nee',
+	  'units': 'milliseconde:|s,seconde:|s,minute:|s,heure:|s,jour:|s,semaine:|s,mois,an:|s|née|nee',
 	  'numbers': 'un:|e,deux,trois,quatre,cinq,six,sept,huit,neuf,dix',
 	  'tokens': "l'|la|le",
 	  'short':'{d} {month} {yyyy}',
@@ -10627,7 +10627,7 @@
 	  'past': '{sign} {num} {unit}',
 	  'future': '{sign} {num} {unit}',
 	  'duration': '{num} {unit}',
-	  'timeMarker': 'a',
+	  'timeMarker': 'à',
 	  'ampm': 'am,pm',
 	  'modifiers': [
 	    { 'name': 'day', 'src': 'hier', 'value': -1 },
@@ -10635,7 +10635,7 @@
 	    { 'name': 'day', 'src': 'demain', 'value': 1 },
 	    { 'name': 'sign', 'src': 'il y a', 'value': -1 },
 	    { 'name': 'sign', 'src': "dans|d'ici", 'value': 1 },
-	    { 'name': 'shift', 'src': 'derni:er|er|ere|ere', 'value': -1 },
+	    { 'name': 'shift', 'src': 'derni:èr|er|ère|ere', 'value': -1 },
 	    { 'name': 'shift', 'src': 'prochain:|e', 'value': 1 }
 	  ],
 	  'dateParse': [
@@ -10694,7 +10694,7 @@
 	Date.addLocale('it', {
 	  'plural': true,
 	  'months': 'Gennaio,Febbraio,Marzo,Aprile,Maggio,Giugno,Luglio,Agosto,Settembre,Ottobre,Novembre,Dicembre',
-	  'weekdays': 'Domenica,Luned:i|i,Marted:i|i,Mercoled:i|i,Gioved:i|i,Venerd:i|i,Sabato',
+	  'weekdays': 'Domenica,Luned:ì|i,Marted:ì|i,Mercoled:ì|i,Gioved:ì|i,Venerd:ì|i,Sabato',
 	  'units': 'millisecond:o|i,second:o|i,minut:o|i,or:a|e,giorn:o|i,settiman:a|e,mes:e|i,ann:o|i',
 	  'numbers': "un:|a|o|',due,tre,quattro,cinque,sei,sette,otto,nove,dieci",
 	  'tokens': "l'|la|il",
@@ -10847,29 +10847,29 @@
 
 	Date.addLocale('ko', {
 	  'digitDate': true,
-	  'monthSuffix': '?',
-	  'weekdays': '???,???,???,???,???,???,???',
-	  'units': '???,?,?,??,?,?,??|?,?',
-	  'numbers': '?|?,?,?,?,?,?,?,?,?,?',
-	  'short': '{yyyy}?{M}?{d}?',
-	  'long': '{yyyy}?{M}?{d}? {H}?{mm}?',
-	  'full': '{yyyy}?{M}?{d}? {Weekday} {H}?{mm}?{ss}?',
+	  'monthSuffix': '월',
+	  'weekdays': '일요일,월요일,화요일,수요일,목요일,금요일,토요일',
+	  'units': '밀리초,초,분,시간,일,주,개월|달,년',
+	  'numbers': '일|한,이,삼,사,오,육,칠,팔,구,십',
+	  'short': '{yyyy}년{M}월{d}일',
+	  'long': '{yyyy}년{M}월{d}일 {H}시{mm}분',
+	  'full': '{yyyy}년{M}월{d}일 {Weekday} {H}시{mm}분{ss}초',
 	  'past': '{num}{unit} {sign}',
 	  'future': '{num}{unit} {sign}',
 	  'duration': '{num}{unit}',
-	  'timeSuffixes': '?,?,?',
-	  'ampm': '??,??',
+	  'timeSuffixes': '시,분,초',
+	  'ampm': '오전,오후',
 	  'modifiers': [
-	    { 'name': 'day', 'src': '???', 'value': -2 },
-	    { 'name': 'day', 'src': '??', 'value': -1 },
-	    { 'name': 'day', 'src': '??', 'value': 0 },
-	    { 'name': 'day', 'src': '??', 'value': 1 },
-	    { 'name': 'day', 'src': '??', 'value': 2 },
-	    { 'name': 'sign', 'src': '?', 'value': -1 },
-	    { 'name': 'sign', 'src': '?', 'value':  1 },
-	    { 'name': 'shift', 'src': '??|?', 'value': -1 },
-	    { 'name': 'shift', 'src': '??', 'value': 0 },
-	    { 'name': 'shift', 'src': '??|?', 'value': 1 }
+	    { 'name': 'day', 'src': '그저께', 'value': -2 },
+	    { 'name': 'day', 'src': '어제', 'value': -1 },
+	    { 'name': 'day', 'src': '오늘', 'value': 0 },
+	    { 'name': 'day', 'src': '내일', 'value': 1 },
+	    { 'name': 'day', 'src': '모레', 'value': 2 },
+	    { 'name': 'sign', 'src': '전', 'value': -1 },
+	    { 'name': 'sign', 'src': '후', 'value':  1 },
+	    { 'name': 'shift', 'src': '지난|작', 'value': -1 },
+	    { 'name': 'shift', 'src': '이번', 'value': 0 },
+	    { 'name': 'shift', 'src': '다음|내', 'value': 1 }
 	  ],
 	  'dateParse': [
 	    '{num}{unit} {sign}',
@@ -10877,9 +10877,9 @@
 	  ],
 	  'timeParse': [
 	    '{shift} {unit=5?} {weekday}',
-	    '{year}?{month?}??{date?}??',
-	    '{month}?{date?}??',
-	    '{date}?'
+	    '{year}년{month?}월?{date?}일?',
+	    '{month}월{date?}일?',
+	    '{date}일'
 	  ]
 	});
 
@@ -11003,10 +11003,10 @@
 
 	Date.addLocale('pl', {
 	  'plural':    true,
-	  'months':    'Stycze?|Stycznia,Luty|Lutego,Marzec|Marca,Kwiecie?|Kwietnia,Maj|Maja,Czerwiec|Czerwca,Lipiec|Lipca,Sierpie?|Sierpnia,Wrzesie?|Wrze?nia,Pa?dziernik|Pa?dziernika,Listopad|Listopada,Grudzie?|Grudnia',
-	  'weekdays':  'Niedziela|Niedziel?,Poniedzia?ek,Wtorek,?rod:a|?,Czwartek,Pi?tek,Sobota|Sobot?',
-	  'units':     'milisekund:a|y|,sekund:a|y|,minut:a|y|,godzin:a|y|,dzie?|dni,tydzie?|tygodnie|tygodni,miesi?ce|miesi?ce|miesi?cy,rok|lata|lat',
-	  'numbers':   'jeden|jedn?,dwa|dwie,trzy,cztery,pi??,sze??,siedem,osiem,dziewi??,dziesi??',
+	  'months':    'Styczeń|Stycznia,Luty|Lutego,Marzec|Marca,Kwiecień|Kwietnia,Maj|Maja,Czerwiec|Czerwca,Lipiec|Lipca,Sierpień|Sierpnia,Wrzesień|Września,Październik|Października,Listopad|Listopada,Grudzień|Grudnia',
+	  'weekdays':  'Niedziela|Niedzielę,Poniedziałek,Wtorek,Środ:a|ę,Czwartek,Piątek,Sobota|Sobotę',
+	  'units':     'milisekund:a|y|,sekund:a|y|,minut:a|y|,godzin:a|y|,dzień|dni,tydzień|tygodnie|tygodni,miesiące|miesiące|miesięcy,rok|lata|lat',
+	  'numbers':   'jeden|jedną,dwa|dwie,trzy,cztery,pięć,sześć,siedem,osiem,dziewięć,dziesięć',
 	  'optionals': 'w|we,roku',
 	  'short':     '{d} {Month} {yyyy}',
 	  'long':      '{d} {Month} {yyyy} {H}:{mm}',
@@ -11019,13 +11019,13 @@
 	  'modifiers': [
 	    { 'name': 'day', 'src': 'przedwczoraj', 'value': -2 },
 	    { 'name': 'day', 'src': 'wczoraj', 'value': -1 },
-	    { 'name': 'day', 'src': 'dzisiaj|dzi?', 'value': 0 },
+	    { 'name': 'day', 'src': 'dzisiaj|dziś', 'value': 0 },
 	    { 'name': 'day', 'src': 'jutro', 'value': 1 },
 	    { 'name': 'day', 'src': 'pojutrze', 'value': 2 },
 	    { 'name': 'sign', 'src': 'temu|przed', 'value': -1 },
 	    { 'name': 'sign', 'src': 'za', 'value': 1 },
-	    { 'name': 'shift', 'src': 'zesz?y|zesz?a|ostatni|ostatnia', 'value': -1 },
-	    { 'name': 'shift', 'src': 'nast?pny|nast?pna|nast?pnego|przysz?y|przysz?a|przysz?ego', 'value': 1 }
+	    { 'name': 'shift', 'src': 'zeszły|zeszła|ostatni|ostatnia', 'value': -1 },
+	    { 'name': 'shift', 'src': 'następny|następna|następnego|przyszły|przyszła|przyszłego', 'value': 1 }
 	  ],
 	  'dateParse': [
 	    '{num} {unit} {sign}',
@@ -11084,10 +11084,10 @@
 
 	Date.addLocale('pt', {
 	  'plural': true,
-	  'months': 'janeiro,fevereiro,marco,abril,maio,junho,julho,agosto,setembro,outubro,novembro,dezembro',
-	  'weekdays': 'domingo,segunda-feira,terca-feira,quarta-feira,quinta-feira,sexta-feira,sabado|sabado',
-	  'units': 'milisegundo:|s,segundo:|s,minuto:|s,hora:|s,dia:|s,semana:|s,mes|meses|mes|meses,ano:|s',
-	  'numbers': 'um,dois,tres|tres,quatro,cinco,seis,sete,oito,nove,dez,uma,duas',
+	  'months': 'janeiro,fevereiro,março,abril,maio,junho,julho,agosto,setembro,outubro,novembro,dezembro',
+	  'weekdays': 'domingo,segunda-feira,terça-feira,quarta-feira,quinta-feira,sexta-feira,sábado|sabado',
+	  'units': 'milisegundo:|s,segundo:|s,minuto:|s,hora:|s,dia:|s,semana:|s,mês|mêses|mes|meses,ano:|s',
+	  'numbers': 'um,dois,três|tres,quatro,cinco,seis,sete,oito,nove,dez,uma,duas',
 	  'tokens': 'a,de',
 	  'short':'{d} de {month} de {yyyy}',
 	  'long': '{d} de {month} de {yyyy} {H}:{mm}',
@@ -11095,17 +11095,17 @@
 	  'past': '{num} {unit} {sign}',
 	  'future': '{sign} {num} {unit}',
 	  'duration': '{num} {unit}',
-	  'timeMarker': 'as',
+	  'timeMarker': 'às',
 	  'ampm': 'am,pm',
 	  'modifiers': [
 	    { 'name': 'day', 'src': 'anteontem', 'value': -2 },
 	    { 'name': 'day', 'src': 'ontem', 'value': -1 },
 	    { 'name': 'day', 'src': 'hoje', 'value': 0 },
-	    { 'name': 'day', 'src': 'amanh:a|a', 'value': 1 },
-	    { 'name': 'sign', 'src': 'atras|atras|ha|ha', 'value': -1 },
+	    { 'name': 'day', 'src': 'amanh:ã|a', 'value': 1 },
+	    { 'name': 'sign', 'src': 'atrás|atras|há|ha', 'value': -1 },
 	    { 'name': 'sign', 'src': 'daqui a', 'value': 1 },
 	    { 'name': 'shift', 'src': 'passad:o|a', 'value': -1 },
-	    { 'name': 'shift', 'src': 'proximo|proxima|proximo|proxima', 'value': 1 }
+	    { 'name': 'shift', 'src': 'próximo|próxima|proximo|proxima', 'value': 1 }
 	  ],
 	  'dateParse': [
 	    '{num} {unit} {sign}',
@@ -11255,10 +11255,10 @@
 	Date.addLocale('sv', {
 	  'plural': true,
 	  'months': 'januari,februari,mars,april,maj,juni,juli,augusti,september,oktober,november,december',
-	  'weekdays': 'sondag|sondag,mandag:|en+mandag:|en,tisdag,onsdag,torsdag,fredag,lordag|lordag',
-	  'units': 'millisekund:|er,sekund:|er,minut:|er,timm:e|ar,dag:|ar,veck:a|or|an,manad:|er|en+manad:|er|en,ar:||et+ar:||et',
-	  'numbers': 'en|ett,tva|tva,tre,fyra,fem,sex,sju,atta|atta,nio,tio',
-	  'tokens': 'den,for|for',
+	  'weekdays': 'söndag|sondag,måndag:|en+mandag:|en,tisdag,onsdag,torsdag,fredag,lördag|lordag',
+	  'units': 'millisekund:|er,sekund:|er,minut:|er,timm:e|ar,dag:|ar,veck:a|or|an,månad:|er|en+manad:|er|en,år:||et+ar:||et',
+	  'numbers': 'en|ett,två|tva,tre,fyra,fem,sex,sju,åtta|atta,nio,tio',
+	  'tokens': 'den,för|for',
 	  'articles': 'den',
 	  'short':'den {d} {month} {yyyy}',
 	  'long': 'den {d} {month} {yyyy} {H}:{mm}',
@@ -11268,16 +11268,16 @@
 	  'duration': '{num} {unit}',
 	  'ampm': 'am,pm',
 	  'modifiers': [
-	    { 'name': 'day', 'src': 'forrgar|i forrgar|iforrgar|forrgar|i forrgar|iforrgar', 'value': -2 },
-	    { 'name': 'day', 'src': 'gar|i gar|igar|gar|i gar|igar', 'value': -1 },
+	    { 'name': 'day', 'src': 'förrgår|i förrgår|iförrgår|forrgar|i forrgar|iforrgar', 'value': -2 },
+	    { 'name': 'day', 'src': 'går|i går|igår|gar|i gar|igar', 'value': -1 },
 	    { 'name': 'day', 'src': 'dag|i dag|idag', 'value': 0 },
 	    { 'name': 'day', 'src': 'morgon|i morgon|imorgon', 'value': 1 },
-	    { 'name': 'day', 'src': 'over morgon|overmorgon|i over morgon|i overmorgon|iovermorgon|over morgon|overmorgon|i over morgon|i overmorgon|iovermorgon', 'value': 2 },
+	    { 'name': 'day', 'src': 'över morgon|övermorgon|i över morgon|i övermorgon|iövermorgon|over morgon|overmorgon|i over morgon|i overmorgon|iovermorgon', 'value': 2 },
 	    { 'name': 'sign', 'src': 'sedan|sen', 'value': -1 },
 	    { 'name': 'sign', 'src': 'om', 'value':  1 },
-	    { 'name': 'shift', 'src': 'i forra|forra|i forra|forra', 'value': -1 },
+	    { 'name': 'shift', 'src': 'i förra|förra|i forra|forra', 'value': -1 },
 	    { 'name': 'shift', 'src': 'denna', 'value': 0 },
-	    { 'name': 'shift', 'src': 'nasta|nasta', 'value': 1 }
+	    { 'name': 'shift', 'src': 'nästa|nasta', 'value': 1 }
 	  ],
 	  'dateParse': [
 	    '{num} {unit} {sign}',
@@ -11338,7 +11338,7 @@
 	  'variant': true,
 	  'monthSuffix': '月',
 	  'weekdays': '星期日|周日,星期一|周一,星期二|周二,星期三|周三,星期四|周四,星期五|周五,星期六|周六',
-	  'units': '毫秒,秒?,分?,小?,天,个星期|周,个月,年',
+	  'units': '毫秒,秒钟,分钟,小时,天,个星期|周,个月,年',
 	  'tokens': '日|号',
 	  'short':'{yyyy}年{M}月{d}日',
 	  'long': '{yyyy}年{M}月{d}日 {tt}{h}:{mm}',
@@ -11346,7 +11346,7 @@
 	  'past': '{num}{unit}{sign}',
 	  'future': '{num}{unit}{sign}',
 	  'duration': '{num}{unit}',
-	  'timeSuffixes': '点|?,分??,秒',
+	  'timeSuffixes': '点|时,分钟?,秒',
 	  'ampm': '上午,下午',
 	  'modifiers': [
 	    { 'name': 'day', 'src': '前天', 'value': -2 },
@@ -11357,7 +11357,7 @@
 	    { 'name': 'sign', 'src': '前', 'value': -1 },
 	    { 'name': 'sign', 'src': '后', 'value':  1 },
 	    { 'name': 'shift', 'src': '上|去', 'value': -1 },
-	    { 'name': 'shift', 'src': '?', 'value':  0 },
+	    { 'name': 'shift', 'src': '这', 'value':  0 },
 	    { 'name': 'shift', 'src': '下|明', 'value':  1 }
 	  ],
 	  'dateParse': [
