@@ -69,11 +69,11 @@
 	        ko.track(pages);
 	        // Init Common Parts VM
 	        this.sideNav = new SideNav([
-	            new MenuItem(pages.home, '/'),
-	            new MenuItem('1stDashboard', 'tachometer', '/dashboard/1'),
-	            new MenuItem('2ndDashboard', 'tachometer', '/dashboard/2'),
-	            new MenuItem(pages.apps, '/app'),
-	            new MenuItem('ErrorSample', 'warning', '/hogehoge')
+	            new MenuItem(pages.home, ''),
+	            new MenuItem('1stDashboard', 'tachometer', 'dashboard/1'),
+	            new MenuItem('2ndDashboard', 'tachometer', 'dashboard/2'),
+	            new MenuItem(pages.apps, 'app'),
+	            new MenuItem('ErrorSample', 'warning', 'hogehoge')
 	        ]);
 	        this.headerNav = new HeaderNav(this.sideNav);
 	        ko.track(this);
@@ -83,15 +83,15 @@
 	var ApplicationRouter = (function () {
 	    function ApplicationRouter(app) {
 	        this.app = app;
-	        page.base($("base").attr("href").slice(0, -1));
+	        page.base($("base").attr("href"));
 	        page('*', function (ctx, next) {
-	            app.href = ctx.pathname;
+	            app.href = ctx.pathname.substr(1);
 	            next();
 	        });
-	        page('/', function (ctx, next) {
+	        page('', function (ctx, next) {
 	            app.page = 'home';
 	        });
-	        page('/dashboard/:id', function (ctx, next) {
+	        page('dashboard/:id', function (ctx, next) {
 	            var dashboardPage = new DashboardPage();
 	            dashboardPage.load(ctx.params.id).done(function (data) {
 	                app.pages['dashboard'] = dashboardPage;
@@ -100,7 +100,7 @@
 	                next();
 	            });
 	        });
-	        page('/app', function (ctx, next) {
+	        page('app', function (ctx, next) {
 	            app.page = 'apps';
 	        });
 	        page('*', function (ctx, next) {
@@ -290,8 +290,8 @@
 	    }
 	    DashboardPage.prototype.load = function (id) {
 	        this.id = id;
-	        var base = $("base").attr("href").slice(0, -1);
-	        var endpoint = "{base}/api/dashboard/{id}.json".assign({ base: base, id: id });
+	        var base = $("base").attr("href");
+	        var endpoint = "{base}api/dashboard/{id}.json".assign({ base: base, id: id });
 	        var dashboard = this;
 	        return $.getJSON(endpoint).done(function (data) {
 	            //DEMO GithubPageでのテストデモ用に、localstorageから復帰するよ。
@@ -324,8 +324,8 @@
 	            col: widgetLayout.col,
 	            row: widgetLayout.row
 	        }); });
-	        var base = $("base").attr("href").slice(0, -1);
-	        var endpoint = "{base}/api/dashboard/{id}.json".assign({ base: base, id: this.id });
+	        var base = $("base").attr("href");
+	        var endpoint = "{base}api/dashboard/{id}.json".assign({ base: base, id: this.id });
 	        //GithubPageでのテストデモ用に、localstorageに退避するよ
 	        localStorage.setItem(endpoint, JSON.stringify(serialized));
 	        this.message = "Save success.";

@@ -1,1 +1,0 @@
-Github can't use url_rewrite.
