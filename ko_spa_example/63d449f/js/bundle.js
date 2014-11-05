@@ -83,9 +83,10 @@
 	var ApplicationRouter = (function () {
 	    function ApplicationRouter(app) {
 	        this.app = app;
-	        page.base($("base").attr("href"));
+	        var base = $("base").attr("href");
+	        page.base(base);
 	        page('*', function (ctx, next) {
-	            app.href = ctx.pathname.substr(1);
+	            app.href = ctx.pathname.substr(base.length);
 	            next();
 	        });
 	        page('', function (ctx, next) {
